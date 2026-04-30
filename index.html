@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五月病セルフチェック｜新入社員ストレスチェック</title>
+<meta name="description" content="新入社員のための五月病早期発見セルフチェック。6つの観点から約3分でストレス状態を診断します。">
+<meta property="og:title" content="五月病セルフチェック">
+<meta property="og:description" content="新入社員のための早期ストレスチェック。約3分で完了します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --brown-dark: #5B4A3F;
+    --brown-mid: #6B5B4F;
+    --brown-light: #A0937D;
+    --cream: #F0E8DE;
+    --cream-light: #FFF5EE;
+    --cream-bg: #FAFAF7;
+    --border: #EDE7DF;
+    --border-light: #E8DDD3;
+    --teal: #4ECDC4;
+    --orange: #F7A072;
+    --orange-dark: #F4845F;
+    --yellow: #F7C948;
+    --red: #FF6B6B;
+    --card-bg: rgba(255,255,255,0.85);
+  }
+
+  body {
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic Pro', sans-serif;
+    min-height: 100vh; min-height: 100dvh;
+    background: linear-gradient(160deg, #FFF8F0 0%, #FDE8D8 30%, #E8F5F3 70%, #FFF5EE 100%);
+    display: flex; justify-content: center; align-items: flex-start; padding: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px; padding: 36px 28px; max-width: 520px; width: 100%;
+    box-shadow: 0 8px 40px rgba(180,150,120,0.1), 0 1px 3px rgba(180,150,120,0.08);
+    margin-top: 20px; transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .card.fade-out { opacity: 0; transform: translateY(12px); }
+  .card.fade-in  { opacity: 1; transform: translateY(0); }
+  .card.wide { max-width: 560px; }
+
+  .intro-icon { font-size: 52px; text-align: center; margin-bottom: 12px; }
+  .intro-title { font-size: 24px; font-weight: 700; color: var(--brown-dark); text-align: center; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .intro-sub { font-size: 14px; color: var(--brown-light); text-align: center; line-height: 1.7; margin-bottom: 28px; }
+  .intro-desc { background: linear-gradient(135deg, var(--cream-light), #F0EFEB); border-radius: 16px; padding: 20px; margin-bottom: 28px; font-size: 14px; color: var(--brown-mid); line-height: 1.8; }
+  .cat-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+  .cat-tag { background: #fff; border: 1px solid var(--border-light); border-radius: 20px; padding: 6px 14px; font-size: 12px; color: var(--brown-mid); }
+
+  .btn-primary {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: #fff; border: none; border-radius: 14px;
+    font-size: 16px; font-weight: 700; font-family: 'Zen Maru Gothic', sans-serif;
+    cursor: pointer; box-shadow: 0 4px 16px rgba(247,160,114,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(247,160,114,0.45); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary.sm { font-size: 15px; padding: 14px; }
+
+  .btn-back { margin-top: 16px; background: none; border: none; color: var(--brown-light); font-size: 13px; cursor: pointer; font-family: 'Zen Maru Gothic', sans-serif; }
+  .btn-back:hover { color: var(--brown-mid); }
+
+  .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: var(--brown-light); }
+  .progress-track { width: 100%; height: 6px; background: var(--cream); border-radius: 3px; overflow: hidden; margin-bottom: 24px; }
+  .progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--orange), var(--teal)); transition: width 0.4s ease; }
+
+  .q-category { display: inline-block; background: var(--cream-light); border-radius: 20px; padding: 5px 14px; font-size: 12px; color: var(--brown-light); margin-bottom: 20px; }
+  .q-text { font-size: 18px; font-weight: 700; color: var(--brown-dark); line-height: 1.7; margin-bottom: 28px; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option-btn {
+    padding: 14px 18px; background: var(--cream-bg); border: 2px solid var(--border); border-radius: 12px;
+    font-size: 15px; font-weight: 500; color: var(--brown-dark); font-family: 'Zen Maru Gothic', sans-serif;
+    cursor: pointer; text-align: left; transition: all 0.2s ease;
+  }
+  .option-btn:hover { border-color: var(--orange); background: rgba(247,160,114,0.07); }
+  .option-btn.selected { transform: scale(1.02); }
+
+  .result-header { text-align: center; margin-bottom: 24px; }
+  .result-icon { font-size: 42px; margin-bottom: 8px; }
+  .result-title { font-size: 22px; font-weight: 700; color: var(--brown-dark); margin-bottom: 6px; }
+  .result-sub { font-size: 13px; color: var(--brown-light); }
+
+  .eval-box { border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 24px; border: 2px solid; }
+  .eval-label { font-size: 14px; color: var(--brown-light); margin-bottom: 4px; }
+  .eval-level { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .eval-score { font-size: 14px; color: var(--brown-mid); }
+
+  .radar-wrap { display: flex; justify-content: center; margin-bottom: 20px; }
+
+  .score-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--cream); }
+  .score-icon { font-size: 18px; width: 28px; }
+  .score-label { flex: 1; font-size: 13px; color: var(--brown-mid); font-weight: 500; }
+  .score-bar-bg { width: 100px; height: 6px; background: var(--cream); border-radius: 3px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 3px; transition: width 0.8s ease; }
+  .score-num { font-size: 14px; font-weight: 700; color: var(--brown-dark); width: 32px; text-align: right; }
+
+  .advice-box { background: #FFF9F5; border-radius: 14px; padding: 18px; margin-bottom: 16px; border-left: 4px solid; font-size: 14px; color: var(--brown-mid); line-height: 1.8; }
+  .tip-box { background: #F0FAF8; border-radius: 14px; padding: 18px; margin-bottom: 28px; }
+  .tip-title { font-size: 12px; color: var(--teal); font-weight: 700; margin-bottom: 8px; }
+  .tip-text { font-size: 14px; color: var(--brown-mid); line-height: 1.8; }
+  .disclaimer { background: var(--cream-light); border-radius: 12px; padding: 14px; margin-bottom: 24px; text-align: center; font-size: 12px; color: var(--brown-light); line-height: 1.7; }
+
+  .petal { position: fixed; pointer-events: none; opacity: 0; z-index: 0; animation: fall linear infinite; }
+  @keyframes fall {
+    0%   { opacity: 0; transform: translateY(-40px) rotate(0deg); }
+    10%  { opacity: 0.5; }
+    90%  { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 12px; }
+    .card { padding: 28px 20px; border-radius: 20px; margin-top: 8px; }
+    .intro-title { font-size: 21px; }
+    .q-text { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const C=[{key:"motivation",label:"やる気・意欲",icon:"🔥"},{key:"sleep",label:"睡眠・休息",icon:"🌙"},{key:"relation",label:"人間関係",icon:"🤝"},{key:"physical",label:"体調・身体",icon:"🌿"},{key:"adaptation",label:"環境適応",icon:"🏢"},{key:"mental",label:"気持ち・心",icon:"💭"}];
+
+const Q=[
+{cat:"motivation",text:"朝、会社に行くのが楽しみだと感じますか？"},
+{cat:"motivation",text:"仕事にやりがいや達成感を感じていますか？"},
+{cat:"motivation",text:"新しい業務を覚えることに前向きですか？"},
+{cat:"sleep",text:"夜、ぐっすり眠れていますか？"},
+{cat:"sleep",text:"朝、すっきり起きられていますか？"},
+{cat:"sleep",text:"休日に十分にリフレッシュできていますか？"},
+{cat:"relation",text:"職場で気軽に話せる人はいますか？"},
+{cat:"relation",text:"上司や先輩に相談しやすい環境ですか？"},
+{cat:"relation",text:"孤立感や疎外感を感じることはありませんか？"},
+{cat:"physical",text:"食欲は普段どおりありますか？"},
+{cat:"physical",text:"頭痛や肩こりなど身体の不調はありませんか？"},
+{cat:"physical",text:"通勤による疲労は許容範囲ですか？"},
+{cat:"adaptation",text:"職場のルールや文化に馴染めていますか？"},
+{cat:"adaptation",text:"入社前のイメージと現実のギャップは少ないですか？"},
+{cat:"adaptation",text:"業務量やスピードについていけていますか？"},
+{cat:"mental",text:"気分が落ち込む日が続いていませんか？"},
+{cat:"mental",text:"将来に対して希望を持てていますか？"},
+{cat:"mental",text:"自分の成長を感じられていますか？"}
+];
+
+const O=[
+{label:"とても当てはまる",value:5,color:"#4ECDC4"},
+{label:"やや当てはまる",value:4,color:"#7ED9D3"},
+{label:"どちらでもない",value:3,color:"#C4C4C4"},
+{label:"あまり当てはまらない",value:2,color:"#F7A072"},
+{label:"全く当てはまらない",value:1,color:"#FF6B6B"}
+];
+
+const TIPS={
+motivation:"💡 小さな目標を設定して達成感を積み重ねてみましょう。「今日これだけはやる」という1つを決めるだけでもOKです。",
+sleep:"💡 就寝1時間前にはスマホを置いて、リラックスする時間を作りましょう。入浴や軽いストレッチも効果的です。",
+relation:"💡 まずは挨拶や雑談から。ランチに誘ってみる、同期と話す時間を作るなど、小さな一歩が大きな安心につながります。",
+physical:"💡 規則正しい食事と適度な運動を心がけましょう。通勤時に一駅歩くだけでも身体は変わってきます。",
+adaptation:"💡 わからないことは遠慮なく質問しましょう。「聞くのは今のうち」です。メモを取る習慣も適応を助けてくれます。",
+mental:"💡 気持ちを紙に書き出してみましょう。ジャーナリングは心の整理に効果的です。つらい時は無理せず休んでOKです。"
+};
+
+let phase="intro",cQ=0,ans={},scores={};
+const $=document.getElementById("app");
+
+// Petals
+["🌸","🍃","✿","🌸","🍃","✿"].forEach((p,i)=>{
+  const e=document.createElement("div");e.className="petal";e.textContent=p;
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=(8+Math.random()*10)+"s";
+  e.style.animationDelay=(Math.random()*12)+"s";
+  e.style.fontSize=(14+Math.random()*12)+"px";
+  document.body.appendChild(e);
+});
+
+function fade(fn){
+  const c=$.querySelector(".card");
+  if(c){c.classList.remove("fade-in");c.classList.add("fade-out");setTimeout(fn,350);}
+  else fn();
+}
+
+function radar(sc,sz){
+  const cx=sz/2,r=sz*.38,st=Math.PI*2/6,sa=-Math.PI/2;
+  const pt=(i,v)=>{const a=sa+st*i,d=(v/5)*r;return[cx+d*Math.cos(a),cx+d*Math.sin(a)];};
+  let s=`<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" xmlns="http://www.w3.org/2000/svg">`;
+  s+=`<defs><linearGradient id="rf" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F7A072" stop-opacity="0.3"/><stop offset="100%" stop-color="#4ECDC4" stop-opacity="0.3"/></linearGradient></defs>`;
+  for(let l=1;l<=5;l++){const p=C.map((_,i)=>pt(i,l).join(",")).join(" ");s+=`<polygon points="${p}" fill="none" stroke="#E8DDD3" stroke-width="${l===5?1.5:0.8}" opacity="0.6"/>`;}
+  C.forEach((_,i)=>{const[x,y]=pt(i,5);s+=`<line x1="${cx}" y1="${cx}" x2="${x}" y2="${y}" stroke="#E8DDD3" stroke-width="0.8" opacity="0.5"/>`;});
+  const dp=C.map((c,i)=>pt(i,sc[c.key]||0));
+  s+=`<polygon points="${dp.map(p=>p.join(",")).join(" ")}" fill="url(#rf)" stroke="#F7A072" stroke-width="2.5" stroke-linejoin="round"/>`;
+  dp.forEach(([x,y])=>{s+=`<circle cx="${x}" cy="${y}" r="4" fill="#fff" stroke="#F7A072" stroke-width="2"/>`;});
+  C.forEach((c,i)=>{const[x,y]=pt(i,5.8);s+=`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" style="font-size:12px;fill:#6B5B4F;font-family:'Zen Maru Gothic',sans-serif;font-weight:500">${c.icon} ${c.label}</text>`;});
+  return s+`</svg>`;
+}
+
+function calc(){
+  const s={};
+  C.forEach(c=>{const qs=Q.map((q,i)=>({...q,idx:i})).filter(q=>q.cat===c.key);const sm=qs.reduce((a,q)=>a+(ans[q.idx]||3),0);s[c.key]=Math.round((sm/qs.length)*10)/10;});
+  return s;
+}
+
+function advice(sc){
+  const t=Object.values(sc).reduce((a,b)=>a+b,0),avg=t/6;
+  const w=C.reduce((m,c)=>sc[c.key]<sc[m.key]?c:m);
+  let lv,cl,sm;
+  if(avg>=4){lv="良好 🌈";cl="#4ECDC4";sm="現時点では良好な状態です。この調子で無理せず過ごしていきましょう。小さな変化にも気づけるよう、定期的なセルフチェックを続けてくださいね。";}
+  else if(avg>=3){lv="やや注意 🌤️";cl="#F7C948";sm="少し気になるサインが見られます。今のうちに自分をいたわる時間を作りましょう。信頼できる人に話を聞いてもらうだけでも気持ちが軽くなることがあります。";}
+  else if(avg>=2){lv="注意 🌥️";cl="#F7A072";sm="ストレスがやや高まっている状態です。一人で抱え込まず、上司や人事、産業医に気軽に相談してみてください。早めの対処が大切です。";}
+  else{lv="要ケア ⛈️";cl="#FF6B6B";sm="かなり負担がかかっている可能性があります。できるだけ早めに、産業医やカウンセラーなど専門家への相談をおすすめします。あなたの健康が一番大切です。";}
+  return{level:lv,color:cl,summary:sm,weakest:w,tip:TIPS[w.key],avg};
+}
+
+function render(){
+  if(phase==="intro"){
+    $.innerHTML=`<div class="card fade-in">
+      <div class="intro-icon">🌱</div>
+      <h1 class="intro-title">五月病セルフチェック</h1>
+      <p class="intro-sub">新入社員のための早期ストレスチェック</p>
+      <div class="intro-desc">このチェックでは、新しい環境でのストレス状態を<strong>6つの観点</strong>から確認します。全${Q.length}問で、所要時間は約3分です。<br><br>正解・不正解はありません。今のあなたの気持ちに一番近いものを選んでくださいね。</div>
+      <div class="cat-tags">${C.map(c=>`<span class="cat-tag">${c.icon} ${c.label}</span>`).join("")}</div>
+      <button class="btn-primary" id="startBtn">チェックをはじめる 🌸</button>
+    </div>`;
+    document.getElementById("startBtn").onclick=()=>fade(()=>{phase="quiz";cQ=0;ans={};render();});
+  }
+  else if(phase==="quiz"){
+    const q=Q[cQ],cat=C.find(c=>c.key===q.cat),pct=(cQ+1)/Q.length*100;
+    $.innerHTML=`<div class="card fade-in">
+      <div class="progress-info"><span>質問 ${cQ+1} / ${Q.length}</span><span>${Math.round(pct)}%</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <div class="q-category">${cat.icon} ${cat.label}</div>
+      <h2 class="q-text">${q.text}</h2>
+      <div class="options">${O.map(o=>`<button class="option-btn" data-val="${o.value}" data-color="${o.color}">${o.label}</button>`).join("")}</div>
+      ${cQ>0?`<button class="btn-back" id="backBtn">← 前の質問に戻る</button>`:""}
+    </div>`;
+    $.querySelectorAll(".option-btn").forEach(b=>{
+      b.onclick=function(){
+        this.classList.add("selected");
+        this.style.borderColor=this.dataset.color;
+        this.style.background=this.dataset.color+"22";
+        ans[cQ]=parseInt(this.dataset.val);
+        setTimeout(()=>{
+          if(cQ<Q.length-1)fade(()=>{cQ++;render();});
+          else{scores=calc();fade(()=>{phase="result";render();});}
+        },300);
+      };
+    });
+    const bb=document.getElementById("backBtn");
+    if(bb)bb.onclick=()=>fade(()=>{cQ--;render();});
+  }
+  else if(phase==="result"){
+    const a=advice(scores),bc=v=>v>=4?"#4ECDC4":v>=3?"#F7C948":v>=2?"#F7A072":"#FF6B6B";
+    $.innerHTML=`<div class="card wide fade-in">
+      <div class="result-header"><div class="result-icon">📊</div><h1 class="result-title">あなたのチェック結果</h1><p class="result-sub">6つの観点からの分析</p></div>
+      <div class="eval-box" style="background:linear-gradient(135deg,${a.color}15,${a.color}08);border-color:${a.color}40">
+        <div class="eval-label">総合評価</div><div class="eval-level" style="color:${a.color}">${a.level}</div><div class="eval-score">平均スコア：${a.avg.toFixed(1)} / 5.0</div>
+      </div>
+      <div class="radar-wrap">${radar(scores,320)}</div>
+      <div style="margin-bottom:20px">${C.map(c=>`<div class="score-row"><span class="score-icon">${c.icon}</span><span class="score-label">${c.label}</span><div class="score-bar-bg"><div class="score-bar-fill" style="width:${(scores[c.key]/5)*100}%;background:${bc(scores[c.key])}"></div></div><span class="score-num">${scores[c.key].toFixed(1)}</span></div>`).join("")}</div>
+      <div class="advice-box" style="border-left-color:${a.color}">${a.summary}</div>
+      <div class="tip-box"><div class="tip-title">${a.weakest.icon} ${a.weakest.label}へのアドバイス</div><p class="tip-text">${a.tip}</p></div>
+      <div class="disclaimer">※ このチェックは医療診断ではありません。<br>気になる結果が出た場合は、産業医やカウンセラーにご相談ください。</div>
+      <button class="btn-primary sm" id="restartBtn">もう一度チェックする 🔄</button>
+    </div>`;
+    document.getElementById("restartBtn").onclick=()=>fade(()=>{phase="intro";cQ=0;ans={};scores={};render();});
+  }
+}
+render();
+</script>
+</body>
+</html>
